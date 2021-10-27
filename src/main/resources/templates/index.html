@@ -4,7 +4,35 @@
     <div th:replace="fragments/header :: header"/>
 </head>
 <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>스프링 부트로 시작하는 웹 서비스</h2>
 
-    <div th:replace="fragments/footer :: footer"/>
+                <a href="posts/save" role="button" class="btn btn-primary mb-2">글 등록</a>
+
+                <table class="table table-horizontal table-bordered">
+                    <thead class="thread-strong">
+                    <tr>
+                        <th>게시글번호</th>
+                        <th>제목</th>
+                        <th>작성자 </th>
+                        <th>최종수정일</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    <tr th:each="posts : ${postsList}">
+                        <td>id</td>
+                        <td><a th:href="@{/posts/update/{postsId}(postsId=${posts.id})}" th:text="${posts.title}">title</a></td>
+                        <td th:text="${posts.author}">author</td>
+                        <td th:text="${posts.modifiedDate}">modifiedDate</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div th:replace="fragments/footer :: footer"/>
+    </div>
 </body>
 </html>
